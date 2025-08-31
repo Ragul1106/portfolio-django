@@ -1,0 +1,86 @@
+{% extends 'base.html' %} {% block title %}Ragul - Home{% endblock %} {% block content %}
+<div class="row mb-4 align-items-center">
+  <div class="col-md-4 text-center">
+    {% if profile and profile.avatar %}
+    <img
+      src="{{ profile.avatar.url }}"
+      alt="Avatar"
+      class="img-fluid rounded-circle mb-3"
+      style="max-width: 200px"
+    />
+    {% endif %}
+  </div>
+  <div class="col-md-8">
+    <h1>
+  {% if profile %}
+    {{ profile.name }}
+  {% else %}
+    Portfolio
+  {% endif %}
+
+</h1>
+
+</h1>
+   
+     <h2 class="lead">
+  {% if profile %}
+    {{ profile.title }}
+  {% else %}
+    Developer / Photographer / Writer
+  {% endif %}
+</h2>
+
+  <p>
+    {{ profile.summary|linebreaksbr }}
+  </p>
+  </div>
+</div>
+
+<h2>Skills</h2>
+<div class="row mb-4">
+  {% for skill in skills %}
+  <div class="col-sm-6 col-md-4 mb-3">
+    <div class="card p-3">
+      <h5>{{ skill.name }}</h5>
+      <div class="progress">
+        <div
+          class="progress-bar"
+          role="progressbar"
+          style="width: {{ skill.proficiency }}%;"
+          aria-valuenow="{{ skill.proficiency }}"
+          aria-valuemin="0"
+          aria-valuemax="100"
+        >
+          {{ skill.proficiency }}%
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+<h2>Recent Projects</h2>
+<div class="row">
+  {% for project in projects %}
+  <div class="col-md-4 mb-4">
+    <div class="card">
+      {% if project.image %}
+      <img
+        src="{{ project.image.url }}"
+        class="card-img-top"
+        alt="{{ project.title }}"
+      />
+      {% endif %}
+      <div class="card-body">
+        <h5 class="card-title">{{ project.title }}</h5>
+        <p class="card-text">{{ project.description|truncatechars:120 }}</p>
+        <a href="{{ project.get_absolute_url }}" class="btn btn-primary"
+          >View</a
+        >
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+
+{% endblock %}

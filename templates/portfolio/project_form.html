@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}New Project{% endblock %}
+{% block content %}
+<h1>Create Project</h1>
+<form method="post" enctype="multipart/form-data" class="form">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit" class="btn">Save</button>
+</form>
+<p><a href="/admin/">Or manage everything from Django Admin</a></p>
+{% endblock %}

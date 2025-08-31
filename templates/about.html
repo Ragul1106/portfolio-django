@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %}Ragul - About{% endblock %}
+{% block content %}
+  <h1>About</h1>
+  {% if profile %}
+    <p>{{ profile.summary|linebreaksbr }}</p>
+  {% endif %}
+
+  <h2>All Skills</h2>
+  <div class="row">
+    {% for skill in skills %}
+      <div class="col-md-4 mb-3">
+        <h5>{{ skill.name }}</h5>
+        <div class="progress">
+          <div class="progress-bar" style="width: {{ skill.proficiency }}%;">{{ skill.proficiency }}%</div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

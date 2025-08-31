@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+  <div class="row">
+    <div class="col-md-8">
+      {% if project.image %}
+        <img src="{{ project.image.url }}" class="img-fluid mb-3" alt="{{ project.title }}">
+      {% endif %}
+      <h1>{{ project.title }}</h1>
+      <p>{{ project.description|linebreaksbr }}</p>
+      {% if project.link %}
+        <p><a href="{{ project.link }}" target="_blank" rel="noopener">Visit Project</a></p>
+      {% endif %}
+    </div>
+    <div class="col-md-4">
+      <div class="card p-3">
+        <h5>Project Info</h5>
+        <p>Created: {{ project.created_at|date:'M d, Y' }}</p>
+      </div>
+    </div>
+  </div>
+{% endblock %}
